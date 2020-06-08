@@ -1,0 +1,2 @@
+PATH=~/code/zsh-scripts:$PATH
+PATH=~/.cabal/bin:$PATH
