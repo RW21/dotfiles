@@ -1,2 +1,3 @@
 PATH=~/code/zsh-scripts:$PATH
 PATH=~/.cabal/bin:$PATH
+alias oex=explorer.exe
