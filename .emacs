@@ -11,6 +11,10 @@
 
 (setq inhibit-startup-screen t)
 (menu-bar-mode 0)
+(tool-bar-mode -1)
+(load-theme 'zenburn t)
+(set-default-font "Mononoki")
+
 
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
@@ -57,3 +61,8 @@
 		    ("\\.md\\'" . markdown-mode)
 		    ("\\.markdown\\'" . markdown-mode))
 	       :init (setq markdown-command "multimarkdown"))
+
+;;;; Racket
+
+(require 'racket-mode)
+(setq racket-racket-program "/Applications/Racket v7.7/bin/racket")
