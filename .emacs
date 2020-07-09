@@ -13,8 +13,9 @@
 (menu-bar-mode 0)
 (tool-bar-mode -1)
 (load-theme 'zenburn t)
-(set-default-font "Mononoki")
 (show-paren-mode 1)
+(set-frame-font "Mononoki 14" nil t)
+(windmove-default-keybindings)
 
 
 (recentf-mode 1)
