@@ -16,6 +16,7 @@
 (show-paren-mode 1)
 (set-frame-font "Mononoki 14" nil t)
 (windmove-default-keybindings)
+(display-time)
 
 
 (recentf-mode 1)
