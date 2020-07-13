@@ -65,6 +65,8 @@
 		    ("\\.markdown\\'" . markdown-mode))
 	       :init (setq markdown-command "multimarkdown"))
 
+(setq markdown-fontify-code-blocks-natively t)
+
 ;;;; Racket
 
 (require 'racket-mode)
