@@ -71,3 +71,9 @@
 
 (require 'racket-mode)
 (setq racket-racket-program "/Applications/Racket v7.7/bin/racket")
+
+;;;; Clojure
+
+;company with cider
+(global-company-mode)
+
