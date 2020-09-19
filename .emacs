@@ -96,3 +96,6 @@
 (straight-use-package 'helm)
 
 (global-set-key (kbd "M-l") 'helm-buffers-list)
+
+;;;; autocomplete
+(ac-config-default)
