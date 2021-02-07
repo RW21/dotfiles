@@ -17,3 +17,7 @@ alias oex="nautilus --browser"
 alias bat="batcat" 
 alias settings="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
 [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
+
+# Dotfiles
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
