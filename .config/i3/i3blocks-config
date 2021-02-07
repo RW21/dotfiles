@@ -1,0 +1,111 @@
+# i3blocks config file
+#
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+#
+# List of valid properties:
+#
+# align
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+# Each block command defaults to the script name to avoid boilerplate.
+# Change $SCRIPT_DIR to the location of your scripts!
+#command=~/.config/i3blocks/$BLOCK_NAME
+command=~/.config/i3/scripts/$BLOCK_NAME
+
+separator_block_width=15
+markup=none
+color=#A4C2F4
+
+[rss]
+interval=300
+#command=rsstail -n1 -1 -N -u https://rss.app/feeds/W7oVlMOnaenZxb92.xml
+command=rsstail -n1 -1 -N -u https://www.nhk.or.jp/rss/news/cat0.xml
+
+# Guess the weather hourly
+[weather]
+command=curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo
+interval=3600
+
+[mediaplayer/mediaplayer]
+command=~/.config/i3/scripts/music
+label=♫
+interval=5
+signal=10
+instance=brave
+
+# Memory usage
+#
+# The type defaults to "mem" if the instance is not specified.
+[memory/memory]
+command=~/.config/i3/scripts/memory
+label=MEM
+interval=30
+
+#[memory/memory]
+#label=SWAP
+#instance=swap
+#separator=true
+#interval=30
+
+[temperature/temperature]
+label=TEMP
+interval=30
+
+
+[battery-poly/battery-poly]
+interval=30
+label=BAT
+#LABEL=⚡
+#BAT_NUMBER=0
+#
+[volume-pulseaudio]
+command=~/.config/i3blocks/volume-pulseaudio/volume-pulseaudio
+label=VOL
+interval=30
+signal=10
+#STEP=5%
+
+# Date Time
+#
+[time]
+command=date '+%a %d %H:%M'
+interval=5
+
+[word]
+markup=pango
+full_text=Done is better than perfect.
+short_text=Done > Perfect
+
+
+
+# Generic media player support
+#
+# This displays "ARTIST - SONG" if a music is playing.
+# Supported players are: spotify, vlc, audacious, xmms2, mplayer, and others.
+#[mediaplayer]
+#instance=spotify
+#interval=5
+#signal=10
+
+# OpenVPN support
+#
+# Support multiple VPN, with colors.
+#[openvpn]
+#interval=20
+
