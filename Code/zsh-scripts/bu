@@ -1,0 +1,26 @@
+#!/bin/zsh
+git add .
+if [ -n "$(git status --porcelain)" ]
+then
+    git status
+    echo "Confirm commit and push? y/n"
+    read confirm
+    if  [ "$confirm" = "Y" ] || [ "$confirm" = "y" ]
+    then
+        # first argument for commit message
+        if [ -z "$1" ]
+        then
+		git commit -m "Update (bu)" || echo "Commit failed"
+        else
+            git commit -m "$1" || echo "Commit failed"
+        fi
+        branch=$(git symbolic-ref --short HEAD)
+        git push origin $branch
+    else
+        git reset
+        echo "Git reset"
+    fi
+else
+echo "No local changes"
+fi
+
