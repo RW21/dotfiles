@@ -25,7 +25,9 @@
 (windmove-default-keybindings)
 (display-time-mode 1)
 
-
+; Theme
+(use-package zenburn
+  :requires zenburn)
 (load-theme 'zenburn t)
 
 
@@ -33,7 +35,6 @@
 
 (global-set-key (kbd "<M-right>") (kbd "C-x 5 o"))
 
-; EVIL
 
 ; Download Evil
 (unless (package-installed-p 'evil)
@@ -66,11 +67,10 @@
 (require 'evil-surround)
 (global-evil-surround-mode 1)
 
-
-
 ; Markdown
 
 (use-package markdown-mode
+	     :requires markdown-mode
 	     :demand t
 	     :commands (markdown-mode gfm-mode)
 	     :mode (("README\\.md\\'" . gfm-mode)
@@ -80,8 +80,9 @@
 (setq markdown-fontify-code-blocks-natively t)
 
 ; Racket
-
-(require 'racket-mode)
+(use-package racket-mode
+	:requires racket-mode)
+;(require 'racket-mode)
 ;(setq racket-racket-program "/usr/bin/racket")
 
 ; Straight
@@ -105,6 +106,8 @@
 (global-set-key (kbd "M-l") 'helm-buffers-list)
 
 ; autocomplete
+;(use-package auto-complete
+;  :ensure auto-complete)
 (ac-config-default)
 
 ; Haskell mode
