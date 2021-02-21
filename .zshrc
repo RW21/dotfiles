@@ -7,6 +7,7 @@ export ZSH="/home/rw21/.oh-my-zsh"
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 export PATH="/home/rw21/code/zsh-scripts:$PATH"
 export PATH="/home/rw21/code/wabt/build:$PATH"
+export PATH="/usr/racket/bin:$PATH"
 
 ZSH_THEME=candy
 plugins=(git z zsh-autosuggestions kubectl)

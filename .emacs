@@ -82,8 +82,13 @@
 ; Racket
 (use-package racket-mode
 	:requires racket-mode)
-;(require 'racket-mode)
-;(setq racket-racket-program "/usr/bin/racket")
+
+; set paths for linux and mac
+(if (eq system-type 'gnu/linux)
+	(setq racket-racket-program "/usr/racket/bin/racket"))
+
+(if (eq system-type 'darwin)
+	(setq racket-racket-program "/usr/bin/racket"))
 
 ; Straight
 
