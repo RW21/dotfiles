@@ -5,9 +5,12 @@
 export ZSH="/home/rw21/.oh-my-zsh"
 
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-export PATH="/home/rw21/code/zsh-scripts:$PATH"
-export PATH="/home/rw21/code/wabt/build:$PATH"
+export PATH="/home/rw21/Code/zsh-scripts:$PATH"
+export PATH="/home/rw21/Code/wabt/build:$PATH"
 export PATH="/usr/racket/bin:$PATH"
+export PATH="/usr/bin/gcloud/completion.zsh.inc:$PATH"
+export PATH=$PATH:~/.local/bin
+
 
 ZSH_THEME=candy
 plugins=(git z zsh-autosuggestions kubectl)
@@ -22,3 +25,6 @@ alias settings="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
 # Dotfiles
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform

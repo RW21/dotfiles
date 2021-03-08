@@ -142,3 +142,8 @@
        (package-install neotree)))
 
 (global-set-key [f8] 'neotree-toggle)
+
+; dockerfile-mode
+
+(use-package dockerfile-mode
+  :requires dockerfile-mode)
