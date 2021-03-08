@@ -1,3 +1,4 @@
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -22,9 +23,11 @@ alias bat="batcat"
 alias settings="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
 [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
 
+# gcloud
+alias gcloud-current-project="gcloud config get-value core/project"
+alias gcloud-token="gcloud auth print-identity-token"
+
 # Dotfiles
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
-
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/bin/terraform terraform
+export TERM=xterm-256color
