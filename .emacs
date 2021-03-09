@@ -147,3 +147,18 @@
 
 (use-package dockerfile-mode
   :requires dockerfile-mode)
+
+; lua mode
+(use-package lua-mode
+  :requires lua-mode)
+
+(add-hook 'lua-mode-hook
+  (lambda () (setq compile-command "love .")))
+
+(defun save-and-compile ()
+  (save-buffer)
+  (compile))
+
+(add-hook 'lua-mode-hook
+  (lambda () (local-set-key (kbd "C-0") #'save-and-compile)))
+
