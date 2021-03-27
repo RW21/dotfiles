@@ -14,13 +14,15 @@ export PATH=$PATH:~/.local/bin
 
 
 ZSH_THEME=candy
-plugins=(git z zsh-autosuggestions kubectl)
+plugins=(git z zsh-autosuggestions kubectl docker-compose docker)
 
 source $ZSH/oh-my-zsh.sh
 
 alias oex="nautilus --browser"
 alias bat="batcat" 
 alias settings="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
+alias clipboard="xsel --clipboard --input"
+
 [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
 
 # gcloud
@@ -31,3 +33,4 @@ alias gcloud-token="gcloud auth print-identity-token"
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 export TERM=xterm-256color
+
