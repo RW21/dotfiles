@@ -36,6 +36,8 @@
 (global-set-key (kbd "<M-right>") (kbd "C-x 5 o"))
 
 
+
+(setq evil-want-C-u-scroll t)
 ; Download Evil
 (unless (package-installed-p 'evil)
     (package-install 'evil))
