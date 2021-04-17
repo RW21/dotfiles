@@ -24,6 +24,7 @@ alias settings="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
 alias clipboard="xsel --clipboard --input"
 
 [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
+source <(minikube completion zsh)
 
 # gcloud
 alias gcloud-current-project="gcloud config get-value core/project"

@@ -157,10 +157,8 @@
 (add-hook 'lua-mode-hook
   (lambda () (setq compile-command "love .")))
 
-(defun save-and-compile ()
-  (save-buffer)
-  (compile))
+(setq compilation-ask-about-save nil)
 
 (add-hook 'lua-mode-hook
-  (lambda () (local-set-key (kbd "C-0") #'save-and-compile)))
+  (lambda () (local-set-key (kbd "C-0") #'compile)))
 
