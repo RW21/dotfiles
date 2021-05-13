@@ -69,6 +69,8 @@
 (require 'evil-surround)
 (global-evil-surround-mode 1)
 
+(define-key evil-insert-state-map (kbd "C-c") 'evil-normal-state)
+
 ; Markdown
 
 (use-package markdown-mode
@@ -161,4 +163,13 @@
 
 (add-hook 'lua-mode-hook
   (lambda () (local-set-key (kbd "C-0") #'compile)))
+
+; godot
+
+(use-package gdscript-mode
+    :straight (gdscript-mode
+               :type git
+               :host github
+               :repo "godotengine/emacs-gdscript-mode"))
+
 

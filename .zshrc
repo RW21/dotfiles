@@ -3,18 +3,19 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/rw21/.oh-my-zsh"
+export ZSH="/home/$USER/.oh-my-zsh"
 
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-export PATH="/home/rw21/Code/zsh-scripts:$PATH"
-export PATH="/home/rw21/Code/wabt/build:$PATH"
+export PATH="/home/$USER/Code/zsh-scripts:$PATH"
+export PATH="/home/$USER/Code/wabt/build:$PATH"
 export PATH="/usr/racket/bin:$PATH"
 export PATH="/usr/bin/gcloud/completion.zsh.inc:$PATH"
+export PATH="$(yarn global bin):$PATH" 
 export PATH=$PATH:~/.local/bin
 
 
-ZSH_THEME=candy
-plugins=(git z zsh-autosuggestions kubectl docker-compose docker)
+ZSH_THEME=dogenpunk
+plugins=(git z zsh-autosuggestions kubectl docker-compose docker fzf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -32,6 +33,10 @@ alias gcloud-token="gcloud auth print-identity-token"
 
 # Dotfiles
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
+export FZF_DEFAULT_OPTS="--height 60% --preview 'batcat --color=always {}'"
+export FZF_COMPLETION_TRIGGER=','
 
 export TERM=xterm-256color
 

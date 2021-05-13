@@ -1,2 +1,4 @@
 set surround
+set commentary
 set clipboard+=unnamed
+
