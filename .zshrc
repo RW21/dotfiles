@@ -21,6 +21,7 @@ source $ZSH/oh-my-zsh.sh
 
 alias oex="nautilus --browser"
 alias bat="batcat" 
+alias vim="nvim"
 alias settings="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
 alias clipboard="xsel --clipboard --input"
 
