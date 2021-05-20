@@ -9,14 +9,29 @@ endif
 call plug#begin('~/.config/nvim/autoload/plugged')
 Plug 'tpope/vim-commentary'
 Plug 'preservim/nerdtree'
+Plug 'tpope/vim-surround'
+Plug 'wlangstroth/vim-racket'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 colorscheme gruvbox
 
 nnoremap <A-1> :NERDTreeToggle<CR>
 
-" yaml
+" YAML
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
+
+" Markdown
+autocmd FileType markdown setlocal shiftwidth=2 tabstop=2
+
+" Racket
+au! BufRead,BufNewFile *.ss	setfiletype racket
+au! BufRead,BufNewFile *.rkt	setfiletype racket
+
+" Slime
+let g:slime_target = "tmux"
+let g:slime_paste_file = tempname()
 
 " Transparent background
 autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE
