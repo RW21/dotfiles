@@ -87,7 +87,7 @@ alias gcloud-token="gcloud auth print-identity-token"
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
-export FZF_DEFAULT_OPTS="--height 60% --preview 'batcat --color=always {}'"
+export FZF_DEFAULT_OPTS="--ansi --height 60% --preview 'batcat --color=always {}'"
 export FZF_COMPLETION_TRIGGER=','
 
 export TERM=xterm-256color
