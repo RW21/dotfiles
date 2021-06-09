@@ -1,4 +1,4 @@
-" auto-install vim-plug
+" Auto-install vim-plug
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -16,6 +16,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'mhinz/vim-startify'
+Plug 'itchyny/lightline.vim'
 call plug#end()
 
 colorscheme gruvbox
@@ -24,10 +25,15 @@ nnoremap <A-1> :NERDTreeToggle<CR>
 
 set number
 
-" disable cursor
+" Lightline
+let g:lightline = {
+      \ 'colorscheme': 'apprentice',
+      \ }
+
+" Disable cursor
 set guicursor=
 
-" use <tab> for trigger completion and navigate to the next complete item
+" Use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
@@ -41,10 +47,10 @@ inoremap <silent><expr> <Tab>
 " YAML
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 
-" julia
+" Julia
 autocmd FileType julia setlocal shiftwidth=4 tabstop=4
 
-" markdown
+" Markdown
 autocmd FileType markdown setlocal shiftwidth=2 tabstop=2
 
 " racket
@@ -57,17 +63,17 @@ let g:slime_paste_file = tempname()
 
 " FZF
 nnoremap <silent> <C-f> :Files<CR>
-nnoremap <silent> <D-F>f :Rg<CR>
+nnoremap <silent> <C-f><C-f> :Rg<CR>
 
-" tabs
+" Tabs
 nnoremap th :tabprevious<CR>
 nnoremap tl :tabnext<CR>
 nnoremap <C-t> :tabnew<CR>
 
-" transparent background
+" Transparent background
 autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE
 
-" auto create directory on save when missing
+" Auto create directory on save when missing
 function s:MkNonExDir(file, buf)
     if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
         let dir=fnamemodify(a:file, ':h')
