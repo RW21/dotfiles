@@ -1,0 +1,86 @@
+foreground: &foreground "#ebdbb2"
+background: &background "#1d2021"
+
+blue: &blue "#458588"
+cyan: &cyan "#689d6a"
+green: &green "#98971a"
+grey: &grey "#3c3836"
+lightGrey: &lightGrey "#a89984"
+magenta: &magenta "#b16286"
+red: &red "#cc241d"
+yellow: &yellow "#d79921"
+orange: &orange "#d65d0e"
+
+k9s:
+  body:
+    fgColor: *foreground
+    bgColor: default
+    logoColor: *yellow
+  info:
+    fgColor: *yellow
+    sectionColor: *foreground
+  frame:
+    border:
+      # XXX: Unused?
+      fgColor: *red
+      focusColor: *grey
+    menu:
+      fgColor: *foreground
+      keyColor: *magenta
+      numKeyColor: *magenta
+    crumbs:
+      fgColor: default
+      bgColor: *magenta
+      activeColor: *yellow
+    status:
+      newColor: *yellow
+      modifyColor: *orange
+      addColor: *blue
+      errorColor: *red
+      highlightcolor: *blue
+      killColor: *magenta
+      completedColor: *lightGrey
+    title:
+      fgColor: *foreground
+      bgColor: default
+      highlightColor: *yellow
+      counterColor: *blue
+      filterColor: *magenta
+  views:
+    # Charts skins...
+    charts:
+      bgColor: *red
+      defaultDialColors:
+        - linegreen
+        - orangered
+      defaultChartColors:
+        - linegreen
+        - orangered
+    table:
+      # XXX: Unused?
+      # For some reason this is the border color in search mode
+      fgColor: *red
+      bgColor: default
+      # XXX: Unused?
+      cursorColor: *red
+      markColor: *magenta
+      header:
+        fgColor: *foreground
+        bgColor: default
+        sorterColor: *yellow
+    xray:
+      fgColor: *red
+      bgColor: default
+      cursorColor: *grey
+      graphicColor: darkgoldenrod
+      showIcons: false
+    yaml:
+      keyColor: *blue
+      colonColor: *foreground
+      valueColor: *foreground
+    logs:
+      fgColor: *foreground
+      bgColor: default
+      indicator:
+        fgColor: *magenta
+        bgColor: default
