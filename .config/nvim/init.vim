@@ -17,6 +17,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'mhinz/vim-startify'
 Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'ekalinin/Dockerfile.vim'
 call plug#end()
 
 colorscheme gruvbox
