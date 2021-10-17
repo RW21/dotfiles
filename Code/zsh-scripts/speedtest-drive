@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+dd if=/dev/zero of=$1/output conv=fdatasync bs=384k count=1k; rm -f $1/output
+
