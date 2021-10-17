@@ -19,6 +19,11 @@ Plug 'mhinz/vim-startify'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'ekalinin/Dockerfile.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 call plug#end()
 
 colorscheme gruvbox
@@ -31,6 +36,20 @@ set number
 let g:lightline = {
       \ 'colorscheme': 'apprentice',
       \ }
+
+" Jump to definition
+function! s:GoToDefinition()
+  if CocAction('jumpDefinition')
+    return v:true
+  endif
+
+  let ret = execute("silent! normal \<C-]>")
+  if ret =~ "Error" || ret =~ "错误"
+    call searchdecl(expand('<cword>'))
+  endif
+endfunction
+
+nmap <silent> gd :call <SID>GoToDefinition()<CR>
 
 " Disable cursor
 set guicursor=
@@ -88,3 +107,4 @@ augroup BWCCreateDir
     autocmd!
     autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
+
