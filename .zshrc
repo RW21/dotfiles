@@ -1,8 +1,7 @@
+# For enabling profiling
+# zprof to check 
+zmodload zsh/zprof
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
 export ZSH="/home/$USER/.oh-my-zsh"
 
 RED='\033[0;31m'
@@ -65,8 +64,8 @@ export PATH="$(yarn global bin):$PATH"
 export PATH=$PATH:~/.local/bin
 
 
-ZSH_THEME=dogenpunk
-plugins=(git z zsh-autosuggestions kubectl docker-compose docker fzf)
+ZSH_THEME=gnzh
+plugins=(git z zsh-autosuggestions kubectl docker-compose docker fzf tmux)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -90,37 +89,30 @@ export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
 export FZF_DEFAULT_OPTS="--ansi --height 60% --preview 'batcat --color=always {}'"
 export FZF_COMPLETION_TRIGGER=','
 
+ZSH_TMUX_AUTOSTART=true
 export TERM=xterm-256color
 
-n ()
-{
-    # Block nesting of nnn in subshells
-    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
-        echo "nnn is already running"
-        return
-    fi
+export EDITOR=nvim
+export GIT_EDITOR=$EDITOR
 
-    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
-    # To cd on quit only on ^G, remove the "export" as in:
-    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-    # NOTE: NNN_TMPFILE is fixed, should not be modified
-    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+export ANSIBLE_COW_SELECTION=random
 
-    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
-    # stty start undef
-    # stty stop undef
-    # stty lwrap undef
-    # stty lnext undef
-
-    nnn "$@"
-
-    if [ -f "$NNN_TMPFILE" ]; then
-            . "$NNN_TMPFILE"
-            rm -f "$NNN_TMPFILE" > /dev/null
-    fi
-}
+export HISTSIZE=1000000000
+export SAVEHIST=$HISTSIZE
+setopt EXTENDED_HISTORY
 
 source ~/.helmrc
 complete -F __start_kubectl k
+
+
+if [ -e /home/rw21/.nix-profile/etc/profile.d/nix.sh ]; then . /home/rw21/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+# this slows zsh
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
