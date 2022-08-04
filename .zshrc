@@ -1,92 +1,60 @@
-# For enabling profiling
-# zprof to check 
-zmodload zsh/zprof
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
 
-export ZSH="/home/$USER/.oh-my-zsh"
-
-RED='\033[0;31m'
-
-echo ";;;;;;;;;;;;;;;;;;;;;cOKKKKKKKKKKKKKKKKKXKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKXk:;;;;;;;;;;;;;;;;;;;"
-echo ";;;;;;;;;;;;;;;;;;;:dKKKKKKKKKKKKKKKKKKk,,coxOKKKKKKKKKKKKKKKKKKKKKKKKKKKKK0o;;;;;;;;;;;;;;;;;;"
-echo ";;;;;;;;;;;;;;;;;;oKKKKKKKKKKKKKKKKKKKKK0l'   .';cdOKKKKKKKKKKKKKKKKKKKKKKKKKOc;;;;;;;;;;;;;;;;"
-echo ";;;;;;;;;;;;;;;;:OKKKKKKKKKKKKKKKKKKKKKKKKK0xol,.   ..',;:clxOKKKKKKKKKKKKKKKKKd;;;;;;;;;;;;;;;"
-echo ";;;;;;;;;;;;;;;lKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK0x;...        .,oOKKKKKKKKKKKKKXk;;;;;;;;;;;;;;"
-echo ";;;;;;;;;;;;;;oKKKKKKKKKKKKKKKKKKKKKKKKK0kxoc;,..    .....        'o0KKKKKKKKKKKXO:;;;;;;;;;;;;"
-echo ";;;;;;;;;;;;;oKKKKKKKKKKKKKKKKKkxdol:,'.      .......   ....        .c0XKKKKKKKKKXO;;;;;;;;;;;;"
-echo ";;;;;;;;;;;;lKKKKKKKKKKKKKKKOOx...................        .'.          ;OXKKKOKKKKXx;;;;;;;;;;;"
-echo ";;;;;;;;;;;:0KKKKKKKKKKKKKXo.    ..... .........,,'.        ..           :ocoocd:oOKc;;;;;;;;;;"
-echo ";;;;;;;;;;;xXXXKXXXKKKXXXXXXX0kkkk0KK00KKKKKKXX0xc',         ..             .; ;o..,:::;;;;;;;;"
-echo ";;;;;;;;;;lXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXK0xl;.     .           ..         ..;  ';....';c:;;;;;"
-echo ";;;;;;;;;;0XXXXXXXXXXXXXXXXXXXXXXXKOxoc,'.  ...,:loolc,...... ..           .;.   :.......'cl;,;"
-echo ";;;;;;;;;oXXXXXXXXXXXXXXXXXXXXXXk,.   .,coxk0KXXXXXXXXXKx,..        .,;;,..;.   .,,.........''."
-echo ";;;;;;;;;0XXXXXXXXXXXXXXXXXXXXXXXK000KXXXXXXXXXXXXXXKxc.     ..':ok0XXx;l,.     .'l............"
-echo ";;;;;;;;oXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX0:.  .'',,;:dXXXXXXXc,co,....':c,............"
-echo ";;;;;;;:KXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXK' ,o0Xd';cllokNXXXN0;,,x0cllc:,.............."
-echo ";;;;;;;dXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXk0XXXk,,,'...'kXXXXc,,,oXKdc;,,,'............"
-echo ";;;;;;;KXXXXXXNXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXO;........,KXXd.'',lXXXXXKkdc,''........."
-echo ";;;;;;dXXXXXXXNXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXk,.'cl:''...dXk'...,lXXXXXXXXNKOxc,......."
-echo ";;;;;;KXXXXXXXNNXXXXXXXXXXXXXXXXXXXXXXXXXXXNXXXXXXXXd,..,',:lodxxkKc;,'',oXXXXXXXXNXXXXXx:,...."
-echo ";;;;;dXXXXXXXXXNNXXXXXXXXXXXXXXXXXXXXXXXXXX0XXXXXXXl'..'x0KXKKXXNKkNkodkdOXXXXXXXXNXXXXXXc::::'"
-echo ";;;;;KXXXXXXXXXXNNXXXXXXXXXXXXXXXXXXXXXXX0lKXXXXX0:'...cKdK000000XlKc.,klKXXXXXXXXNNXXXXXx;;;cx"
-echo ";;;;xXXXXXXXXXXXNNXXXXXXXXXXXXXXXXXXXXXXk;oXXXXXk;''''.ck:OOOOOO0kc0. oxxXXXXXXXXXNNXXXXXK:;;;;"
-echo ";;;lXXXXXXXXXNXXXNWXXXXXXXXXXXXXXXXXXXXo',KXXNKl,''''''.xcck000OocO' ;Ox0NXXXXXXXXNNXXXXXXk;;;;"
-echo ";;:KNXXXXXXNNNXXXNMNXXXXXXXXXXXXXXNXNO:..oNXXx,''',,,,,,'lollllodc..lxdxNXXXXXXXXXNNXXXXXXXx;;;"
-echo ";;0NNNNNNNXdONNNNNMWNNNNNNNNNNNNNNNXo'..,KNO,...''''''',;:lo0KKOxdxxxdlONNNXXXNXNNNNNNNNNNNXo;;"
-echo ";kNNNNNNXk:;0NNNNNMMWNNNNNNNNNNNNNO,.  .kO;.............',:::ccc::::;;lXNNNNNNNNNNNNNNNNNNNNXo;"
-echo "kNNNNNXx:;;;0NNNNWMMMNNNNNNNNNNNXo.    .,     .......................,ONNNNNNNNNNNNNNNNNNNNNNXo"
-echo "NNNNKd:;;;;:XNNNNWMMMWNNNNNNNNNk,.               ....................lNNNNNNNNNNNNNNNNNNNNNNNNX"
-echo "NNOl;;;;;;;cNNNNNWMMMMNNNNNNNKc.                                   .cXNNNNNNNNNNNNNNNNNkl0NNNNN"
-echo "d:;;;;;;;;;dNNNNNWMMMMWNNNNNWKc.                                 .c0WNNNNNNNNNNNWNNNNNNd;;ckXNN"
-echo ";;;;;;;;;;;ONNNNNMMMMMMNNNWMMMMNd'            ':::,            'dXMMNNNNNNNNNNNNNNNNNNNl;;;;;lk"
-echo ";;;;;;;;;;:XNNNNNMMMMMMWWMMMMMMMMWKl.                       'dKMMMMWNNNNNNNNNNNWNNNNNNX:;;;;;;;"
-echo ";;;;;;;;;;dNNNNNWMMMMMMMMMMMMMMMMMMMWKo,.               .:xXMMMMMMWNNNNNNNNNNNWNNNNNNN0;;;;;;;;"
-echo ";;;;;;;;;;0NNNNNWMMMMMMMMMMMMMMMMMMMMMMMNl,'.       .';;dMMMMMMMMMNNNNNNNNNNNWWNNNNNNNK;;;;;;;:"
-echo ";;;;;;;;;cNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMl.';::::c:::'..oMMMMMMMMWNNNNNNNNNNWWNNNNNNNNNc;;;;;:."
-echo ";;;;;;;;;kNNNNNWMMMMMMMMMMMMMMMMMMMMMMMMMl..............:XWMMMMMWNNNNNNNNNWMWNNNNNNNNNNd;;ldl.."
-echo ";;;;;;;;cXNNNNNMMMMMMMMMMMMMMMMMMMMMMMWOo;.............',lcdNMMWNNNNNNNNNWMWNNNNNNNNNNNOllo,..."
-echo ";;;;;;;;kNNNNNWMMMMMMMMMMMMMMMMMMMMMMMk,l;'...........';:c;'oMMNNNNNNNNWMMXxcckXNNX0ko:,::....."
-echo ";;;;;;;cNNNNNWMMMWWMMMMMMMMMMMMMMMMMWXo''';;;;,;,';::::;'''',0WNNNNNNWWNx;....;;;;,,,,,;'......"
-echo ";;;;;;;OWWWWWWMMWdkMMMMMMMMMMMMMMMMWdc,'''''''lKXXXOc,'''''''OWNNWNWNd:...,...',,,,'..........."
-echo ";;;;;;oNWWWWWMMWx;oWMMMMMMMMMWNX0koo;d,''''''oXNNNNNXo''''''cNWWWWWXc....;.....,'.............."
-echo ";;;;;;OWWWWWMMMx;;:NMMMWNX0xo:;,',:;;dc'''''lNNNNNNNNO:''''OWWWWWWo....',.....................'"
-
-echo "$(tput setaf 2)"
-echo "♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡" | ~/./center-echo.sh
-echo "Welcome back $USER" | ~/./center-echo.sh
-echo "♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡" | ~/./center-echo.sh
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-export PATH="/home/$USER/Code/zsh-scripts:$PATH"
-export PATH="/home/$USER/Code/wabt/build:$PATH"
-export PATH="/usr/racket/bin:$PATH"
-export PATH="/usr/bin/gcloud/completion.zsh.inc:$PATH"
-export PATH="$(yarn global bin):$PATH" 
-export PATH=$PATH:~/.local/bin
+export PATH="/home/rw21/code/zsh-scripts:$PATH"
 
+setopt promptsubst
 
-ZSH_THEME=gnzh
-plugins=(git z zsh-autosuggestions kubectl docker-compose docker fzf tmux)
+zinit wait lucid for \
+        OMZL::git.zsh \
+  atload"unalias grv" \
+        OMZP::git
 
-source $ZSH/oh-my-zsh.sh
+zinit wait'!' lucid for \
+    OMZL::prompt_info_functions.zsh \
+    OMZT::gnzh
+
+zinit snippet OMZ::plugins/git/git.plugin.zsh
+zinit snippet OMZ::plugins/common-aliases/common-aliases.plugin.zsh
+zinit snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
+zinit snippet OMZ::plugins/fzf/fzf.plugin.zsh
+zinit snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
+zinit snippet OMZ::plugins/gcloud/gcloud.plugin.zsh
+zinit snippet OMZ::plugins/z/z.plugin.zsh
+
+zinit ice wait lucid
+zinit light zsh-users/zsh-completions 
+zinit ice wait lucid
+zinit light zsh-users/zsh-autosuggestions 
 
 alias oex="nautilus --browser"
-alias bat="batcat" 
+alias bat="batcat"
 alias vim="nvim"
 alias settings="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
 alias clipboard="xsel --clipboard --input"
 
-[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
-source <(minikube completion zsh)
-
 # gcloud
 alias gcloud-current-project="gcloud config get-value core/project"
 alias gcloud-token="gcloud auth print-identity-token"
+export CLOUDSDK_PYTHON=python2
 
 # Dotfiles
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
 export FZF_DEFAULT_OPTS="--ansi --height 60% --preview 'batcat --color=always {}'"
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 export FZF_COMPLETION_TRIGGER=','
 
 ZSH_TMUX_AUTOSTART=true
@@ -97,22 +65,18 @@ export GIT_EDITOR=$EDITOR
 
 export ANSIBLE_COW_SELECTION=random
 
+export HISTFILE=~/.zsh_history
 export HISTSIZE=1000000000
 export SAVEHIST=$HISTSIZE
 setopt EXTENDED_HISTORY
 
-source ~/.helmrc
-complete -F __start_kubectl k
-
-
-if [ -e /home/rw21/.nix-profile/etc/profile.d/nix.sh ]; then . /home/rw21/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-
-export PATH="$HOME/.poetry/bin:$PATH"
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+# complete -F __start_kubectl k
 
 # this slows zsh
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
 
 
