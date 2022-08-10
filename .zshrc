@@ -31,12 +31,13 @@ zinit snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
 zinit snippet OMZ::plugins/fzf/fzf.plugin.zsh
 zinit snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
 zinit snippet OMZ::plugins/gcloud/gcloud.plugin.zsh
-zinit snippet OMZ::plugins/z/z.plugin.zsh
 
 zinit ice wait lucid
 zinit light zsh-users/zsh-completions 
 zinit ice wait lucid
 zinit light zsh-users/zsh-autosuggestions 
+zinit ice wait lucid
+zinit light rupa/z
 
 alias oex="nautilus --browser"
 alias bat="batcat"
@@ -72,11 +73,11 @@ setopt EXTENDED_HISTORY
 
 # complete -F __start_kubectl k
 
-# this slows zsh
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NVM_COMPLETION=true
+export NVM_SYMLINK_CURRENT="true"
+zinit wait lucid light-mode for lukechilds/zsh-nvm
 
-
-
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+bindkey '^H' backward-kill-word
 
