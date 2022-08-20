@@ -23,12 +23,13 @@ Plug 'airblade/vim-gitgutter'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
+Plug 'haya14busa/vim-easymotion'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 call plug#end()
 
 colorscheme gruvbox
 
-nnoremap <A-1> :NERDTreeToggle<CR>
+nnoremap <A-1> :NERDTreeToggle <CR>
 
 set number
 
