@@ -11,10 +11,16 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-export PATH="/home/rw21/code/zsh-scripts:$PATH"
+# Skip ubuntu global compinit
+skip_global_compinit=1
 
-setopt promptsubst
+autoload -Uz compinit
+compinit
+
+
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+export PATH="/home/rw21/Code/zsh-scripts:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 zinit wait lucid for \
         OMZL::git.zsh \
@@ -44,11 +50,17 @@ alias bat="batcat"
 alias vim="nvim"
 alias settings="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
 alias clipboard="xsel --clipboard --input"
+alias globalip="dig +short myip.opendns.com @resolver1.opendns.com"
+
+cheat() {
+   curl cht.sh/"$@"
+}
 
 # gcloud
 alias gcloud-current-project="gcloud config get-value core/project"
 alias gcloud-token="gcloud auth print-identity-token"
-export CLOUDSDK_PYTHON=python2
+export CLOUDSDK_PYTHON=/home/rw21/miniconda3/bin/python3
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 # Dotfiles
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
@@ -70,14 +82,53 @@ export HISTFILE=~/.zsh_history
 export HISTSIZE=1000000000
 export SAVEHIST=$HISTSIZE
 setopt EXTENDED_HISTORY
+setopt INC_APPEND_HISTORY
+export HISTTIMEFORMAT="[%F %T] "
 
-# complete -F __start_kubectl k
+zshaddhistory() {
+   setopt LOCAL_OPTIONS
+   setopt EXTENDED_GLOB
+   print -sr -- "${1%%$'\n'##}"
+   fc -p "$HISTFILE"
+   return 1
+}
+
+bracketed-paste() {
+  zle .$WIDGET && LBUFFER=${LBUFFER%$'\n'}
+}
+zle -N bracketed-paste
 
 export NVM_COMPLETION=true
 export NVM_SYMLINK_CURRENT="true"
-zinit wait lucid light-mode for lukechilds/zsh-nvm
+# zinit wait lucid  for lukechilds/zsh-nvm
+zinit ice wait"1" lucid
+zinit load lukechilds/zsh-nvm
 
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 bindkey '^H' backward-kill-word
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias ~="cd ~"
+
+source <(kubectl completion zsh)
+
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/rw21/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/rw21/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/rw21/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/rw21/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
