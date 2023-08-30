@@ -21,6 +21,7 @@ compinit
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 export PATH="/home/rw21/Code/zsh-scripts:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="/home/rw21/.yarn/bin:$PATH"
 
 zinit wait lucid for \
         OMZL::git.zsh \
@@ -70,6 +71,8 @@ export FZF_DEFAULT_OPTS="--ansi --height 60% --preview 'batcat --color=always {}
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 export FZF_COMPLETION_TRIGGER=','
 
+
+
 ZSH_TMUX_AUTOSTART=true
 export TERM=xterm-256color
 
@@ -114,7 +117,6 @@ alias ....="cd ../../.."
 alias ~="cd ~"
 
 source <(kubectl completion zsh)
-
 
 
 # >>> conda initialize >>>
