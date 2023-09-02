@@ -28,14 +28,46 @@ zinit wait lucid for \
   atload"unalias grv" \
         OMZP::git
 
+# Theme
+PS1="READY >"
 zinit wait'!' lucid for \
     OMZL::prompt_info_functions.zsh \
     OMZT::gnzh
 
+
+if [[ "$(uname)" == "Darwin" ]]; then
+    alias love="/Applications/love.app/Contents/MacOS/love"
+fi
+
+
+if [[ "$(uname)" == "Darwin" ]]; then
+    export FZF_BASE="$HOME/.local/share/zinit/plugins/junegunn---fzf/fzf"
+fi
+
+# FZF
+
+zinit ice from"gh-r" as"program"
+zinit light junegunn/fzf
+
+zinit snippet https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh
+
+zinit snippet https://github.com/junegunn/fzf/blob/master/shell/completion.zsh
+
+zinit ice lucid wait'0'
+zinit light joshskidmore/zsh-fzf-history-search
+
+zinit ice wait lucid
+zinit light Aloxaf/fzf-tab
+
+export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
+export FZF_DEFAULT_OPTS="--ansi --height 60%"
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
+export FZF_COMPLETION_TRIGGER=','
+
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 zinit snippet OMZ::plugins/common-aliases/common-aliases.plugin.zsh
 zinit snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
-zinit snippet OMZ::plugins/fzf/fzf.plugin.zsh
+# zinit snippet OMZ::plugins/fzf/fzf.plugin.zsh
 zinit snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
 zinit snippet OMZ::plugins/gcloud/gcloud.plugin.zsh
 
@@ -43,12 +75,14 @@ zinit ice wait lucid
 zinit light zsh-users/zsh-completions 
 zinit ice wait lucid
 zinit light zsh-users/zsh-autosuggestions 
+
 zinit ice wait lucid
-zinit light rupa/z
+zinit load agkozak/zsh-z
+
 
 alias oex="nautilus --browser"
 alias bat="batcat"
-alias vim="nvim"
+# alias vim="nvim"
 alias settings="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
 alias clipboard="xsel --clipboard --input"
 alias globalip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -60,23 +94,18 @@ cheat() {
 # gcloud
 alias gcloud-current-project="gcloud config get-value core/project"
 alias gcloud-token="gcloud auth print-identity-token"
-export CLOUDSDK_PYTHON=/home/rw21/miniconda3/bin/python3
+export CLOUDSDK_PYTHON=/usr/bin/python3
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 # Dotfiles
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-
-export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
-export FZF_DEFAULT_OPTS="--ansi --height 60% --preview 'batcat --color=always {}'"
-export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
-export FZF_COMPLETION_TRIGGER=','
 
 
 
 ZSH_TMUX_AUTOSTART=true
 export TERM=xterm-256color
 
-export EDITOR=nvim
+# export EDITOR=nvim
 export GIT_EDITOR=$EDITOR
 
 export ANSIBLE_COW_SELECTION=random
@@ -86,6 +115,13 @@ export HISTSIZE=1000000000
 export SAVEHIST=$HISTSIZE
 setopt EXTENDED_HISTORY
 setopt INC_APPEND_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_FIND_NO_DUPS
+setopt HIST_SAVE_NO_DUPS
+
 export HISTTIMEFORMAT="[%F %T] "
 
 zshaddhistory() {
@@ -116,21 +152,30 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias ~="cd ~"
 
+zinit ice id-as="kubectl" as"command" # atload"kubectl completion zsh > _kubectl"
+zinit snippet "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/arm64/kubectl"
+# zinit light-mode lucid wait has"kubectl" for \
+#     id-as"kubectl-completion" \
+#     as"completion" \
+#     atclone"kubectl completion zsh > _kubectl" \
+#     atpull"%atclone" \
+#     zdharma/null
 source <(kubectl completion zsh)
+alias k="kubectl"
 
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/rw21/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/rw21/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/rw21/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/rw21/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+# __conda_setup="$('/home/rw21/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/rw21/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/rw21/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/rw21/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
 # <<< conda initialize <<<
 
