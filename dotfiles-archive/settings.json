@@ -1,0 +1,233 @@
+{
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
+    "keyboard.dispatch": "keyCode",
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "j",
+                "j"
+            ],
+            "after": [
+                "<Esc>",
+                ":",
+                "w",
+                "<Enter>"
+            ]
+        }
+    ],
+    "workbench.colorTheme": "Gruvbox Dark Medium",
+    "vim.leader": "<Space>",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "f"
+            ],
+            "after": [
+                "leader",
+                "leader",
+                "leader",
+                "b",
+                "d",
+                "w"
+            ]
+        },
+        {
+            "before": [
+                "leader",
+                "v"
+            ],
+            "commands": [
+                ":vsplit"
+            ]
+        },
+        {
+            "before": [
+                "leader",
+                "s"
+            ],
+            "commands": [
+                ":split"
+            ]
+        },
+        // panes
+        {
+            "before": [
+                "leader",
+                "h"
+            ],
+            "commands": [
+                "workbench.action.focusLeftGroup"
+            ]
+        },
+        {
+            "before": [
+                "leader",
+                "j"
+            ],
+            "commands": [
+                "workbench.action.focusBelowGroup"
+            ]
+        },
+        {
+            "before": [
+                "leader",
+                "k"
+            ],
+            "commands": [
+                "workbench.action.focusAboveGroup"
+            ]
+        },
+        {
+            "before": [
+                "leader",
+                "l"
+            ],
+            "commands": [
+                "workbench.action.focusRightGroup"
+            ]
+        },
+        {
+            "before": [
+                "u"
+            ],
+            "after": [],
+            "commands": [
+                {
+                    "command": "undo"
+                }
+            ]
+        },
+        {
+            "before": [
+                "<C-r>"
+            ],
+            "after": [],
+            "commands": [
+                {
+                    "command": "redo"
+                }
+            ]
+        },
+        {
+            "before": [
+                "<C-w>",
+            ],
+            "after": [
+                ":",
+                "q",
+                "<enter>"
+            ]
+        },
+        {
+            "before": [
+                "<C-w>",
+            ],
+            "after": [
+                ":",
+                "q",
+                "<enter>"
+            ]
+        },
+        {
+            "before": [
+                "<C-o>",
+            ],
+            "commands": [
+                "workbench.action.navigateBack"
+            ]
+        },
+        {
+            "before": [
+                "<C-i>",
+            ],
+            "commands": [
+                "workbench.action.navigateForward"
+            ]
+        }
+    ],
+    "vim.visualModeKeyBindings": [
+        // Stay in visual mode while indenting
+        {
+            "before": [
+                "<"
+            ],
+            "commands": [
+                "editor.action.outdentLines"
+            ]
+        },
+        {
+            "before": [
+                ">"
+            ],
+            "commands": [
+                "editor.action.indentLines"
+            ]
+        },
+        // Move selected lines while staying in visual mode
+        {
+            "before": [
+                "J"
+            ],
+            "commands": [
+                "editor.action.moveLinesDownAction"
+            ]
+        },
+        {
+            "before": [
+                "K"
+            ],
+            "commands": [
+                "editor.action.moveLinesUpAction"
+            ]
+        },
+        // toggle comment selection
+        {
+            "before": [
+                "leader",
+                "c"
+            ],
+            "commands": [
+                "editor.action.commentLine"
+            ]
+        }
+    ],
+    "vim.useSystemClipboard": true,
+    "editor.minimap.enabled": false,
+    "editor.fontFamily": "'Jetbrains Mono', 'Droid Sans Mono', 'Consolas', 'monospace', monospace, 'Droid Sans Fallback'",
+    "explorer.confirmDragAndDrop": false,
+    "editor.inlineSuggest.enabled": true,
+    "terminal.integrated.commandsToSkipShell": [
+        "language-julia.interrupt"
+    ],
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": true,
+        "markdown": true,
+        "scminput": false,
+        "yaml": true,
+        "go": true,
+        "python": true
+    },
+    "workbench.editor.enablePreviewFromCodeNavigation": true,
+    "workbench.editor.enablePreview": false,
+    "go.toolsManagement.autoUpdate": true,
+    "window.menuBarVisibility": "toggle",
+    "notebook.lineNumbers": "on",
+    "vim.easymotion": true,
+    "jupyter.widgetScriptSources": [
+        "jsdelivr.com",
+        "unpkg.com"
+    ],
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "git.confirmSync": false,
+    "[lua]": {
+        "editor.defaultFormatter": "JohnnyMorganz.stylua"
+    },
+    "editor.fontSize": 14.5,
+    "cmake.configureOnEdit": false,
+    "security.workspace.trust.untrustedFiles": "open",
+}
