@@ -9,7 +9,6 @@ window_ids_string=$(aerospace list-windows --workspace focused --format %{window
 # Convert the string of window IDs into an array
 IFS=$'\n' read -d '' -ra window_ids <<< "$window_ids_string"
 
-
 # Find the index of the current window in the list
 current_index=0
 for i in "${!window_ids[@]}"; do
@@ -19,11 +18,25 @@ for i in "${!window_ids[@]}"; do
   fi
 done
 
-# Calculate the next window's index
-next_index=$(( (current_index + 1) % ${#window_ids[@]} ))
+# Function to attempt focusing a window
+focus_window() {
+  local window_id="$1"
+  aerospace focus --window-id "$window_id"
+  return $?
+}
 
-# Get the next window's ID
+# Try focusing windows until successful or all windows have been tried
+for ((i=1; i<=${#window_ids[@]}; i++)); do
+  next_index=$(( (current_index + i) % ${#window_ids[@]} ))
 next_window_id="${window_ids[$next_index]}"
 
-# Focus the next window
-aerospace focus --window-id "$next_window_id"
+  if focus_window "$next_window_id"; then
+    # Focus successful, exit the script
+    exit 0
+  fi
+  # If focus fails, the loop continues to the next window
+done
+
+# If we've tried all windows and none could be focused, exit with an error
+echo "Failed to focus any window"
+exit 1
